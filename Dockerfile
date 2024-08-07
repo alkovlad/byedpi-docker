@@ -9,8 +9,10 @@ FROM alpine:latest AS build
             musl-dev
 
         RUN git clone https://github.com/hufrea/byedpi /opt/byedpi
-
+        RUN git clone https://github.com/tiernano/transocks_ev /opt/transocks_ev
         WORKDIR /opt/byedpi
+        RUN make
+        WORKDIR /opt/transocks_ev
         RUN make
         
         FROM alpine:latest
